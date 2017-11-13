@@ -1,26 +1,56 @@
-  [{
-          "id": "status1",
-          "kysymysteksti": "Opiskelumuoto",
-          "type": "radio",
-          "name": "status",
-          "value": ["Päivätoteutus", "Monimuotototeutus", "Ei kirjoilla Haaga-Heliassa"]
-   },
-
-      {
-          "id": "tieto1",
-          "kysymysteksti": "Mistä olet löytänyt tietoa Haaga-Helian kursseista?",
-          "type": "checkbox",
-          "name": "tieto",
-          "value": ["MyNet", "Haaga-Helian sivut", "Google", "Excel", "Muu henkilö", "Muualta, mistä?"]
-   },
-
-
-
-
-      {
-          "id": "nimi1",
-          "kysymysteksti": "Nimi",
-          "type": "text",
-          "name": "nimi",
-          "value": []
-   }]
+[{
+        "id": "1status",
+        "kysymysteksti": "Opiskelumuoto",
+        "type": "radio",
+        "name": "status",
+        "value": ["Päivätoteutus", "Monimuotototeutus", "Ei kirjoilla Haaga-Heliassa"]
+},
+    {
+        "id": "2tieto",
+        "kysymysteksti": "Mistä olet löytänyt tietoa Haaga-Helian kursseista?",
+        "type": "checkbox",
+        "name": "tieto",
+        "value": ["MyNet", "Haaga-Helian sivut", "Google", "Excel", "Muu henkilö"]
+},
+    {
+        "id": "3tietomuualta",
+        "kysymysteksti": "Muualta, mistä?",
+        "type": "text",
+        "name": "tietomuualta1",
+        "value": []
+},
+    {
+        "id": "4etsinta",
+        "kysymysteksti": "Kuinka helpoksi koet tiedon etsimisen?",
+        "type": "radio",
+        "name": "etsinta",
+        "value": ["1", "2", "3", "4", "5"]
+},
+    {
+        "id": "5loytaminen",
+        "kysymysteksti": "Löydätkö tiedon yhdestä paikasta?",
+        "type": "radio",
+        "name": "loytaminen",
+        "value": ["1", "2", "3", "4", "5"]
+},
+    {
+        "id": "6mieluiten",
+        "kysymysteksti": "Mistä haluaisit mieluiten kurssitietojen löytyvän?",
+        "type": "checkbox",
+        "name": "mieluiten",
+        "value": ["MyNet", "Excel", "Haaga-Helian sivut"]
+},
+    {
+        "id": "7tietomuualta",
+        "kysymysteksti": "Muualta, mistä?",
+        "type": "text",
+        "name": "tietomuualta2",
+        "value": []
+},
+    {
+        "id": "8arvosana",
+        "kysymysteksti": "Yleisarvosana nykyisestä mallista?",
+        "type": "radio",
+        "name": "arvosana",
+        "value": ["1", "2", "3", "4", "5"]
+}]
