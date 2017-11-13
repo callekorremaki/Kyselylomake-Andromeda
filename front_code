@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 
 <head>
@@ -7,46 +7,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Kyselylomake - informaation löytäminen Haaga-Helian kursseista">
     <meta name="author" content="Andromeda 4.0: Säde Jalonen, Samuli Kinnunen, Calle Korremäki, Laura-Maaria Penttilä">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-
+    <title>Kyselylomake</title>
+    <style>
+        body {
+            font-family: verdana;
+        }
+    </style>
 </head>
 
 <body>
     <form>
         <div id="lomake">
+
         </div>
-        <div><button onclick="laheta()">Lähetä</button></div>
+        <br>
+
+        <button onclick="laheta()">Lähetä</button>
     </form>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
         $.getJSON("jsonindex.json", function(data) {
-
             var items = [];
+            var i = 0;
 
             $.each(data, function(key, d) {
                 if (d.type == "text") {
-                    items.push(d.kysymysteksti + ":")
-                    items.push("<input type=" + d.type + " id= " + d.id + " > ")
+                    items.push(d.kysymysteksti + ": ");
+                    items.push("<input type=" + d.type + " id= " + d.name + "><br>");
                 }
-                if (d.type == "radio") {
-                    items.push(d.kysymysteksti + ":<br>");
+                if (d.type == "radio" || d.type == "checkbox") {
+                    items.push("<br>" + d.kysymysteksti + ":<br>");
 
                     for (i = 0; i < d.value.length; i++) {
-                        items.push("<input type=" + d.type + " value=" + d.value[i] + "name=" + d.name + ">" + d.value[i] + "<br>");
-                        alert(d.name);
-                    }
-                }
-                if (d.type == "checkbox") {
-                    items.push(d.kysymysteksti + ":<br>");
+                        items.push("<input type=" + d.type + " id= " + d.value[i] + " name= " + d.name + " value=" + d.value[i] + ">" + d.value[i] + "<br>");
 
-                    for (i = 0; i < d.value.length; i++) {
-                        items.push("<input type=" + d.type + " value=" + d.value[i] + "name=" + d.name + ">" + d.value[i] + "<br>")
                     }
                 }
+
             });
-
 
             $("<div/>", {
                 "class": "lomake",
@@ -54,20 +53,27 @@
             }).appendTo("#lomake");
         });
 
-
         function laheta() {
             var nimi = document.getElementById("nimi1").value;
-            //         var status = document.querySelector('input[name="status"]:checked').value;
+
+
+            var opiskelumuoto = document.querySelector('input[name = "status"]:checked').value;
+            alert("sukupuoli " + status);
+
+            var tieto = "";
             var taulukko = [];
-            $("input:checkbox[name=harrastukset]:checked").each(function() {
+            $("input:checkbox[name=tieto]:checked").each(function() {
                 taulukko.push($(this).val());
             });
-            alert(nimi + taulukko[0]);
+
+            for (i = 0; i < taulukko.length; i++) {
+                //alert(taulukko[i]);
+                tieto = tieto + " " + taulukko[i];
+            }
+            alert("nimi: " + nimi + ", sukupuoli: " + opiskelumuoto + ", harrastukset: " + tieto);
         }
-
     </script>
-
-
 </body>
 
 </html>
+
