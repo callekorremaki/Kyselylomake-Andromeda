@@ -1,23 +1,26 @@
-[{
-        "id": "status",
-        "kysymysteksti": "Status",
-        "type": "radio",
-        "name": "status",
-        "value": ["Päivätoteutus", "Monimuotototeutus"]
-},
+  [{
+          "id": "status1",
+          "kysymysteksti": "Opiskelumuoto",
+          "type": "radio",
+          "name": "status",
+          "value": ["Päivätoteutus", "Monimuotototeutus", "Ei kirjoilla Haaga-Heliassa"]
+   },
 
-    {
-        "id": "harrastukset",
-        "kysymysteksti": "Harrastukset",
-        "type": "checkbox",
-        "name": "harrastukset",
-        "value": ["Kuntosali", "Pelaaminen", "Matkustaminen"]
-},
+      {
+          "id": "tieto1",
+          "kysymysteksti": "Mistä olet löytänyt tietoa Haaga-Helian kursseista?",
+          "type": "checkbox",
+          "name": "tieto",
+          "value": ["MyNet", "Haaga-Helian sivut", "Google", "Excel", "Muu henkilö", "Muualta, mistä?"]
+   },
 
-    {
-        "id": "nimi1",
-        "kysymysteksti": "Nimi",
-        "type": "text",
-        "name": "nimi",
-        "value": []
-}]
+
+
+
+      {
+          "id": "nimi1",
+          "kysymysteksti": "Nimi",
+          "type": "text",
+          "name": "nimi",
+          "value": []
+   }]
