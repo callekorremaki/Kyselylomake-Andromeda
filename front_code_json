@@ -1,0 +1,23 @@
+[{
+        "id": "status",
+        "kysymysteksti": "Status",
+        "type": "radio",
+        "name": "status",
+        "value": ["Päivätoteutus", "Monimuotototeutus"]
+},
+
+    {
+        "id": "harrastukset",
+        "kysymysteksti": "Harrastukset",
+        "type": "checkbox",
+        "name": "harrastukset",
+        "value": ["Kuntosali", "Pelaaminen", "Matkustaminen"]
+},
+
+    {
+        "id": "nimi1",
+        "kysymysteksti": "Nimi",
+        "type": "text",
+        "name": "nimi",
+        "value": []
+}]
