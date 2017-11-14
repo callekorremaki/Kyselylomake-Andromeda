@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Digiprojektin yhteystesti</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button").click(function () {
+                $.getJSON("http://proto331.haaga-helia.fi:8080/backend/kyselyt/1", function (result) {
+                    $.each(result, function (i, field) {
+                        $("div").append(field + "<br><br> ");
+                    });
+                });
+                $.getJSON("http://proto331.haaga-helia.fi:8080/backend/kyselyt/1/kysymykset/1", function (result) {
+                    $.each(result, function (i, field) {
+                        $("div").append("<br>" + field + "<br>");
+                    });
+                });
+                $.getJSON("http://proto331.haaga-helia.fi:8080/backend/kyselyt/1/kysymykset/2", function (result) {
+                    $.each(result, function (i, field) {
+                        $("div").append("<br>" + field + "<br>");
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <button>Hae JSON data</button>
+    <div></div>
+</body>
+</html>
