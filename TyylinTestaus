@@ -23,15 +23,12 @@
 	<div class="otsikko">
 	<br>
 	<h1>Kurssien informaation löytyminen Haaga-Heliassa.</h1>
-	<p> Tämän kyselyn tarkoituksen on selvittää kuinka helppoa on löytää tietoa Haaga-Helian kursseista.<br> Tämä kysely on osa Haaga-Helian digiprojekti kurssia. Tervetuloa vastaamaan :)</p>
+	<p> Tämän kyselyn tarkoituksen on selvittää kuinka helppoa on löytää tietoa Haaga-Helian kursseista. Kyselyssä 1 tarkoittaa huono, 5 hyvä.</p>
 	</div>
 	</header>
 	
 	
 <body>
-
-
-
 
     <form>
         <div id="lomake">
@@ -46,26 +43,32 @@
     </form>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script>
+   <script>
         $.getJSON("jsonindex.json", function(data) {
+
             var items = [];
-            var i = 0;
 
             $.each(data, function(key, d) {
                 if (d.type == "text") {
-                    items.push(d.kysymysteksti + ": ");
-                    items.push("<input type=" + d.type + " id= " + d.name + "><br>");
+                    items.push(d.kysymysteksti + ": ")
+                    items.push("<input type=" + d.type + " id= " + d.id + " ><br>")
                 }
-                if (d.type == "radio" || d.type == "checkbox") {
+                if (d.type == "radio") {
                     items.push("<br>" + d.kysymysteksti + ":<br>");
 
                     for (i = 0; i < d.value.length; i++) {
-                        items.push("<input type=" + d.type + " id= " + d.value[i] + " name= " + d.name + " value=" + d.value[i] + ">" + d.value[i] + "<br>");
-
+                        items.push("<input type=" + d.type + " value=" + d.value[i] + "name=" + d.name + ">" + d.value[i] + "<br>");
                     }
                 }
+                if (d.type == "checkbox") {
+                    items.push("<br>" + d.kysymysteksti + ":<br>");
 
+                    for (i = 0; i < d.value.length; i++) {
+                        items.push("<input type=" + d.type + " value=" + d.value[i] + "name=" + d.name + ">" + d.value[i] + "<br>")
+                    }
+                }
             });
+
 
             $("<div/>", {
                 "class": "lomake",
@@ -73,24 +76,15 @@
             }).appendTo("#lomake");
         });
 
+
         function laheta() {
             var nimi = document.getElementById("nimi1").value;
-
-
-            var opiskelumuoto = document.querySelector('input[name = "status"]:checked').value;
-            alert("sukupuoli " + status);
-
-            var tieto = "";
+            //         var status = document.querySelector('input[name="status"]:checked').value;
             var taulukko = [];
-            $("input:checkbox[name=tieto]:checked").each(function() {
+            $("input:checkbox[name=harrastukset]:checked").each(function() {
                 taulukko.push($(this).val());
             });
-
-            for (i = 0; i < taulukko.length; i++) {
-                //alert(taulukko[i]);
-                tieto = tieto + " " + taulukko[i];
-            }
-            alert("nimi: " + nimi + ", sukupuoli: " + opiskelumuoto + ", harrastukset: " + tieto);
+            alert(nimi + taulukko[0]);
         }
     </script>
 </body>
@@ -112,10 +106,7 @@ html {background-image:url(tausta.jpg);
 body {background-color: white;
 	width: 50%;
 	margin:auto;
-	
 	border-radius: 2px;
-	
-	
 	}
 
 .otsikko {text-align:center;
@@ -123,3 +114,9 @@ body {background-color: white;
 		  
 h1 {font-family: 'Patua One', cursive;}
 
+@media only screen and (max-width: 720px) {
+
+body {
+ width:90%;	
+}
+}
