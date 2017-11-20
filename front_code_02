@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Kyselylomake - informaation löytäminen Haaga-Helian kursseista">
+    <meta name="author" content="Andromeda 4.0: Säde Jalonen, Samuli Kinnunen, Calle Korremäki, Laura-Maaria Penttilä">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+    <form>
+        <div id="lomake">
+        </div>
+        <br>
+
+        <div><button onclick="laheta()">Lähetä</button></div>
+    </form>
+    <script>
+        $.getJSON("jsonindex.json", function(data) {
+
+            var items = [];
+
+            $.each(data, function(key, d) {
+                if (d.type == "text") {
+                    items.push(d.kysymysteksti + ": ")
+                    items.push("<input type=" + d.type + " id= " + d.id + " ><br>")
+                }
+                if (d.type == "radio") {
+                    items.push("<br>" + d.kysymysteksti + ":<br>");
+
+                    for (i = 0; i < d.value.length; i++) {
+                        items.push("<input type=" + d.type + " value=" + d.value[i] + "name=" + d.name + ">" + d.value[i] + "<br>");
+                    }
+                }
+                if (d.type == "checkbox") {
+                    items.push("<br>" + d.kysymysteksti + ":<br>");
+
+                    for (i = 0; i < d.value.length; i++) {
+                        items.push("<input type=" + d.type + " value=" + d.value[i] + "name=" + d.name + ">" + d.value[i] + "<br>")
+                    }
+                }
+            });
+
+
+            $("<div/>", {
+                "class": "lomake",
+                html: items.join("")
+            }).appendTo("#lomake");
+        });
+
+
+        function laheta() {
+            var nimi = document.getElementById("nimi1").value;
+            //         var status = document.querySelector('input[name="status"]:checked').value;
+            var taulukko = [];
+            $("input:checkbox[name=harrastukset]:checked").each(function() {
+                taulukko.push($(this).val());
+            });
+            alert(nimi + taulukko[0]);
+        }
+    </script>
+
+</body>
+
+</html>
