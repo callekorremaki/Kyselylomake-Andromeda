@@ -3,7 +3,7 @@
         "kysymysteksti": "Opiskelumuoto",
         "type": "radio",
         "name": "status",
-        "value": ["Päivätoteutus", "Monimuotototeutus", "Ei kirjoilla Haaga-Heliassa"]
+        "value": ["Päivätoteutus", "Monimuotototeutus", "Hakija", "Jokin muu"]
 },
     {
         "id": "2tieto",
@@ -24,14 +24,14 @@
         "kysymysteksti": "Kuinka helpoksi koet tiedon etsimisen?",
         "type": "radio",
         "name": "etsinta",
-        "value": ["1", "2", "3", "4", "5"]
+        "value": ["1", "2", "3", "4", "5", "En osaa sanoa"]
 },
     {
         "id": "5loytaminen",
         "kysymysteksti": "Löydätkö tiedon yhdestä paikasta?",
         "type": "radio",
         "name": "loytaminen",
-        "value": ["1", "2", "3", "4", "5"]
+        "value": ["Kyllä", "En", "En osaa sanoa"]
 },
     {
         "id": "6mieluiten",
@@ -52,5 +52,6 @@
         "kysymysteksti": "Yleisarvosana nykyisestä mallista?",
         "type": "radio",
         "name": "arvosana",
-        "value": ["1", "2", "3", "4", "5"]
+        "value": ["1", "2", "3", "4", "5", "En osaa sanoa"]
 }]
+
