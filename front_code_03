@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Kyselylomake - informaation löytäminen Haaga-Helian kursseista">
+    <meta name="author" content="Andromeda 4.0: Säde Jalonen, Samuli Kinnunen, Calle Korremäki, Laura-Maaria Penttilä">
+
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet">
+
+    <title>Kyselylomake</title>
+    <style>
+        body {
+            width: 90%;
+            font-family: verdana;
+            margin: auto;
+            border-radius: 2px;
+        }
+
+        .background {
+            background-image: url(https://raw.githubusercontent.com/callekorremaki/Kyselylomake-Andromeda/master/tausta.jpg);
+            background-size: cover;
+            background-color: white;
+            width: 50%;
+        }
+
+        .otsikko {
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Patua One', cursive;
+        }
+
+        @media only screen and (max-width: 720px) {}
+
+    </style>
+</head>
+
+<header>
+    <div class="otsikko">
+        <br>
+        <h1>Kurssien informaation löytyminen Haaga-Heliassa.</h1>
+        <p> Tämän kyselyn tarkoituksen on selvittää kuinka helppoa on löytää tietoa Haaga-Helian kursseista. Kyselyssä 1 tarkoittaa huono, 5 hyvä.</p>
+    </div>
+</header>
+
+
+<body>
+
+    <form>
+        <div id="main">
+
+        </div>
+        <br>
+
+        <button onclick="laheta()">Lähetä</button>
+
+
+
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            // Haetaan perustiedot (nimi ja kuvaus) kaikista kyselyistä
+            $.getJSON("http://proto331.haaga-helia.fi:8080/backend/kyselyt", function(root) {
+
+                // Haetaan kaikki elementit juuresta = kaikki kyselyt (urheilukysely, ruokakysely, lempivärikysely jne)
+                $.each(root, function(i, kysely) {
+
+                    // Lisätään main-diviin kyselyn nimi ja kuvaus
+                    $("#main").append("<div id=" + kysely.id + "><h2>" + kysely.nimi + "</h2><i>Kuvaus: " + kysely.kuvaus + "</i><br>");
+
+                    // Haetaan kyselyn kaikki kysymykset
+                    $.getJSON("http://proto331.haaga-helia.fi:8080/backend/kyselyt/" + kysely.id + "/kysymykset", function(kysymykset) {
+
+                        // Käydään läpi yhden kyselyn kaikki kysymykset
+                        $.each(kysymykset, function(i, kysymys) {
+
+                            //   $.each(kysymykset, function(d, data) {
+                            //         if (d.type == "text") {
+                            //             items.push(d.kysymysteksti + ": ")
+                            //               items.push("<input type=" + d.type + " id= " + d.id + " ><br>")
+                            //           }
+                            //
+                            //            for (i = 0; i < d.kysymys.length; i++) {
+                            //             items.push("<input type=" + d.type + " kysymys=" + //i.kysymys[i] + "name=" + d.name + ">" + d.kysymys[i] + "<br>");
+                            //         }
+                            //      }
+                            //     if (i.type == "checkbox") {
+                            //         items.push("<br>" + d.kysymysteksti + ":<br>");
+
+                            //           for (i = 0; i < d.kysymys.length; i++) {
+                            //             items.push("<input type=" + d.type + " kysymys=" + //d.kysymys[i] + "name=" + d.name + ">" + d.kysymys[i] + "<br>")
+                            //           }
+                            //        }
+                            //   });
+
+                            // Lisätään kyselyn omaan diviin kysymys
+                            $("#" + kysely.id).append("<br><b>Kysymys: </b>" + kysymys.teksti + "<br>");
+
+                            // Jos kyseessä monivalinta, lisätään vaihtoehdot
+                            $.each(kysymys.vaihtoehdot, function(i, vaihtoehto) {
+
+                                // Lisätään kyselyn omaan diviin vaihtoehto
+                                $("#" + kysely.id).append("<i>Vaihtoehto: " + vaihtoehto.teksti + "</i><br>");
+                            });
+                        });
+                        //});
+                    });
+                });
+                // Kun kaikki kyselyt on käyty läpi, suljetaan lopuksi main-div
+                $("#main").append("</div>");
+            });
+        });
+
+
+
+
+
+
+
+        // "Alkuperäinen" Mirjan koodinpätkä, jota yritetty saada toimimaan alerttina
+        //    function laheta() {
+        //         var nimi = document.getElementById("nimi1").value;
+        //         var status = //document.querySelector('input[name="status"]:checked').value;
+        //     var taulukko = [];
+        //      $("input:checkbox[name=harrastukset]:checked").each(function() {
+        //           taulukko.push($(this).val());
+        //      });
+        // }
+        
+        // Button-scripti, jonka voisi saada toimimaan
+        //  <script>
+        //  $('button').click(function () {
+        //  $.post('http://proto331.haaga-helia.fi:8080/backend/kyselyt/', {data: 'blah'}, function (data) {
+        //  console.log(data);
+        //  });
+        //  }, 'json');
+</script>
+
+    </script>
+</body>
+
+<footer>
+    <br>
+    <br>
+</footer>
+
+</html>
