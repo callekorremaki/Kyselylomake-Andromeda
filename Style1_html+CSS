@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Kyselylomake - informaation löytäminen Haaga-Helian kursseista">
+    <meta name="author" content="Andromeda 4.0: Säde Jalonen, Samuli Kinnunen, Calle Korremäki, Laura-Maaria Penttilä">
+	
+	<link href="style.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet"> 
+	
+    <title>Kyselylomake</title>
+    <style>
+        body {
+            font-family: verdana;
+        }
+    </style>
+	</head>
+
+	<header>
+	<div class="otsikko">
+	<br>
+	<h1>Kurssien informaation löytyminen Haaga-Heliassa.</h1>
+	<p> Tämän kyselyn tarkoituksen on selvittää kuinka helppoa on löytää tietoa Haaga-Helian kursseista. Kyselyssä 1 tarkoittaa huono, 5 hyvä.</p>
+	</div>
+	</header>
+	
+	
+<body>
+
+    <form>
+        <div id="lomake">
+
+        </div>
+        <br>
+
+        <button class="lomake" onclick="laheta()">Lähetä</button>
+		
+		
+		
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+   <script>
+        $.getJSON("jsonindex.json", function(data) {
+
+            var items = [];
+
+            $.each(data, function(key, d) {
+                if (d.type == "text") {
+                    items.push(d.kysymysteksti + ": ")
+                    items.push("<input type=" + d.type + " id= " + d.id + " ><br>")
+                }
+                if (d.type == "radio") {
+                    items.push("<br>" + d.kysymysteksti + ":<br>");
+
+                    for (i = 0; i < d.value.length; i++) {
+                        items.push("<input type=" + d.type + " value=" + d.value[i] + "name=" + d.name + ">" + d.value[i] + "<br>");
+                    }
+                }
+                if (d.type == "checkbox") {
+                    items.push("<br>" + d.kysymysteksti + ":<br>");
+
+                    for (i = 0; i < d.value.length; i++) {
+                        items.push("<input type=" + d.type + " value=" + d.value[i] + "name=" + d.name + ">" + d.value[i] + "<br>")
+                    }
+                }
+            });
+
+
+            $("<div/>", {
+                "class": "lomake",
+                html: items.join("")
+            }).appendTo("#lomake");
+        });
+
+
+        function laheta() {
+            var nimi = document.getElementById("nimi1").value;
+            //         var status = document.querySelector('input[name="status"]:checked').value;
+            var taulukko = [];
+            $("input:checkbox[name=harrastukset]:checked").each(function() {
+                taulukko.push($(this).val());
+            });
+            alert(nimi + taulukko[0]);
+        }
+    </script>
+</body>
+
+
+<footer>
+<br>
+<br>
+</footer>
+     
+</html>
+
+CSS-tieodsto
+
+html {background-image:url(https://raw.githubusercontent.com/callekorremaki/Kyselylomake-Andromeda/master/tausta.jpg);
+	  background-size:cover;
+	  }
+
+body {background-color: rgb(248, 248, 255);
+	width: 50%;
+	margin:auto;
+	border-radius: 2px;
+	
+	
+	}
+
+.otsikko {text-align:center;
+		  }
+
+.lomake { margin: static;
+        margin-left: 20px;
+    
+}
+		  
+h1 {font-family: 'Patua One', cursive;}
+
+
+
+@media only screen and (max-width: 720px) {
+
+body {
+ width:90%;	
+}
+}
+
+
+
+
+
