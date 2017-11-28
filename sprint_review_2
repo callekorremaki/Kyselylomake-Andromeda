@@ -1,0 +1,34 @@
+• Tuoteomistaja aloittaa esittelemällä product backlogin ja sprint taskboardin 
+
+https://trello.com/b/06zZOtrA/digiprojekti 
+
+Keltaisella merkatut on kurssin tehtäviä, vihreällä sprint 1:n aikana tehtyjä, vaaleansiniset sprint 2:n aikana tehtyjä ja tummansiniset jo sprint 3:a varten. Kaiken kaikkiaan päästy tavoitteisiin, vaikka koodin kanssa on edelleen haastetta. Backlogia päivitetään sprint 3:n suunnittelun yhteydessä, yhdessä ohtulaisten kanssa.
+
+
+
+• Esittele lomakkeen käyttöliittymä 
+
+http://myy.haaga-helia.fi/~a1700303/digi_pub/digiprojektisprint2.html
+
+CSS ei tällä hetkellä käyttäydy, kuten sen pitäisi. Selvitetään missä ongelma seuraavalla tunnilla. 
+
+
+
+• Esittele tiedon hakeminen ohtun protopalvelimelta
+
+http://myy.haaga-helia.fi/~a1700303/digi_pub/digiprojektisprint2.html
+
+Backendistä haettu tieto näkyy HTML-sivulla odotetun mukaisesti. Vaiheessa on vastausvaihtoehtojen ID-luokittelu laadun mukaan (teksti/monivalinta), tämä katsotaan ohtutiimin kanssa toimintaan.
+
+
+
+• Esittele tiedon lähettäminen protopalvelimelle (joko suunnitelma toteutuksesta tai toteutus)
+
+Ei vielä toiminnassa - scripti löytyy koodista. Katsotaan yhdessä ohtutiimin kanssa termit oikein ja katsotaan, että vastaukset ovat luettavissa.
+
+
+
+• Jos aikaa jää esittele myös koodia 
+
+http://myy.haaga-helia.fi/~a1700303/digi_pub/digiprojektisprint2.html
+http://myy.haaga-helia.fi/~a1700303/digi_pub/digiprojektisprint2.css
