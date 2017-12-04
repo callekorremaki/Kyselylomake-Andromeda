@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Kyselylomake - informaation löytäminen Haaga-Helian kursseista">
+    <meta name="author" content="Andromeda 4.0: Säde Jalonen, Samuli Kinnunen, Calle Korremäki, Laura-Maaria Penttilä">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109930936-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109930936-2');
+    </script>
+    <link href="digiprojektisprint2.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Patua+One" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: verdana;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <div id="main">
+        </div>
+        <br>
+        <button>Lähetä</button>
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $.getJSON("http://proto331.haaga-helia.fi:8080/backend/kyselyt", function (root) {
+
+                $.each(root, function (i, kysely) {
+
+                    $("#main").append("<div id=" + kysely.id + "><h2>" + kysely.nimi + "</h2><i>Kuvaus: " + kysely.kuvaus + "</i><br>");
+
+                    $.getJSON("http://proto331.haaga-helia.fi:8080/backend/kyselyt/1/kysymykset/", function (kysymykset) {
+
+
+                        $.each(kysymykset, function (i, kysymys) {
+
+                            $("#" + kysely.id).append("<br><b>Kysymys: </b>" + kysymys.teksti + "<br>");
+
+                            //   if (vaihtoehto == "teksti") {
+                            //       items.push(vaihtoehto.teksti + ": ")
+                            //       items.push("<input type=" + vaihtoehto.teksti + " id= " + vaihtoehto.id + " ><br>")
+                            //  }
+                            // alert(kysymys.monivalinta);
+
+
+                            // if (kysymys.monivalinta == true) {
+                            //    items.push("<br>" + kysymys.monivalinta + ":<br>");
+
+                            //    for (i = 0; i < i.kysymys.length; i++) {
+                            //        items.push("<input type=" + kysymys.monivalinta + " kysymys=" + kysymys.monivalinta[i] + "name=" + kysymys.name + ">" + kysymys.monivalinta[i] + "<br>")
+
+                            //     }
+                            // } else(
+                            //     if (kysymys.monivalinta == false) {
+                            //        items.push("<br>" + kysymys.monivalinta + ":<br>");
+                            //    });
+
+                            $.each(kysymys.vaihtoehdot, function (i, vaihtoehto) {
+
+
+
+
+                                $("#" + kysely.id).append("<i>Vaihtoehto: " + vaihtoehto.teksti + "</i><br>");
+                            });
+                        });
+
+                    });
+                });
+
+                $("#main").append("</div>");
+            });
+
+
+            //        var jsonData = {
+            //           "kymysId": "",
+            //           "vastaus": ""
+            //      };
+
+            //      var myJSON = JSON.stringify(jsonData);
+
+            //      $("button").click(function () {
+            //         $.ajax({
+            //             url: 'http://proto331.haaga-helia.fi:8080/backend/kyselyt/',
+            //             type: 'POST',
+            //             dataType: 'json',
+            //             data: jsonData,
+            //             success: function () {
+            //                 alert('POST completed. Data:' + myJSON)
+            //            }
+            //       });
+        });
+    </script>
+</body>
+
+<footer>
+    <br>
+    <br>
+</footer>
+
+</html>
